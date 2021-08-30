@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { getUser, getUserCreditCards, getUserAddresses } from '../../utils/fetch';
-import { ListItemText, Typography, List, ListItem } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "5px"
   },
 }));
-const Users = () => {
+const User = () => {
   const classes = useStyles();
   const { userId } = useParams();
 
@@ -100,7 +100,6 @@ const Users = () => {
       </div>
       <div className={classes.dataInformation}>
         <Typography variant="h5" color="primary">Direcciones</Typography>
-        <List>
         {addresses.map((address, index) => {
         return (
           <div key={index} className={classes.dataCard}>
@@ -123,11 +122,9 @@ const Users = () => {
           </div>
         )
       })}
-        </List>
-
       </div>
     </div>
   );
 };
 
-export default Users;
+export default User;

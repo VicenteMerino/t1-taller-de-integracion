@@ -3,3 +3,7 @@ export { getUsers } from './getUsers';
 export { getUser } from './getUser';
 export { getUserCreditCards } from './getUserCreditCards';
 export { getUserAddresses } from './getUserAddresses';
+export { getCities } from './getCities';
+export { getAllCities } from './getAllCities';
+export { getCity } from './getCity';
+export { getUsersSet } from './getUsersSet';
