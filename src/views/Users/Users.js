@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { getAllUsers } from '../../utils/fetch/getAllUsers';
+import { getAllUsers } from '../../utils/fetch';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,13 +31,13 @@ const Users = () => {
     })
   }, []);
 
-  console.log(users);
   return (
     <div className={classes.root}>
       <List className={classes.usersContainer}>
       {users.map((user, index) => {
         return (
-          <ListItem button component="a" href="#" key={index} className={classes.userItem}>
+          <ListItem button component="a" href={`/users/${user.id}`}
+                    key={index} className={classes.userItem}>
             <span>
               {`${user.name} ${user.lastName}`}
             </span>
