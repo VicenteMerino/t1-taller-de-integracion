@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { getUser, getUserCreditCards, getUserAddresses } from '../../utils/fetch';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginLeft: "20vw",
-    marginTop: "20vh",
+    marginLeft: "10vw",
+    marginTop: "10vh",
     display: "flex",
   },
   image: {
@@ -15,19 +15,35 @@ const useStyles = makeStyles((theme) => ({
     width: "400px"
   },
   character: {
-    border: "solid red 3px",
+    border: "solid black 3px",
+    borderRadius: "12px",
+    backgroundColor: "#F6F6EB"
   },
   dataInformation: {
     display: "flex",
     flexDirection: "column",
-    marginLeft: "40px"
+    marginLeft: "10vw",
+    textAlign: "center",
+    borderRadius: "12px",
+    border: "solid black 3px",
+    padding: "20px",
+    height: "60vh"
+    
   },
   dataCard: {
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "#F6F6EB",
+    borderRadius: "12px",
+    border: "solid black 1px",
+    padding: "10px",
+    marginTop: "20px"
   },
   dataContainer: {
     display: "flex",
+    justifyContent: "center",
+    padding: "20px",
+    textAlign: "center",
   },
   userItem: {
     border: "1px solid red",
@@ -65,18 +81,20 @@ const User = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.character}>
-        <img className={classes.image} src={user.avatar} title={`${user.name} ${user.lastName}`}
-            alt={`${user.name} ${user.lastName}`} />
-        <div className={classes.dataContainer}>
-          <div>
-            <div className={classes.typography}>
-              <Typography className={classes.keyTypography}>Nombre y Apellido:</Typography>
-              <Typography>{`${user.name} ${user.lastName}`}</Typography>
-            </div>
-            <div className={classes.typography}>
-              <Typography className={classes.keyTypography}>Email:</Typography>
-              <Typography>{`${user.email}`}</Typography>
+      <div >
+        <div className={classes.character}>
+          <img className={classes.image} src={user.avatar} title={`${user.name} ${user.lastName}`}
+              alt={`${user.name} ${user.lastName}`} />
+          <div className={classes.dataContainer}>
+            <div>
+              <div className={classes.typography}>
+                <Typography className={classes.keyTypography}>Nombre y Apellido:</Typography>
+                <Typography>{`${user.name} ${user.lastName}`}</Typography>
+              </div>
+              <div className={classes.typography}>
+                <Typography className={classes.keyTypography}>Email:</Typography>
+                <Typography>{`${user.email}`}</Typography>
+              </div>
             </div>
           </div>
         </div>
@@ -105,7 +123,10 @@ const User = () => {
           <div key={index} className={classes.dataCard}>
             <div className={classes.typography}>
               <Typography className={classes.keyTypography}>Ciudad:</Typography>
+              <Link to={`/cities/${address.city.id}`}>
               <Typography>{`${address.city.name}`}</Typography>
+
+              </Link>
             </div>
             <div className={classes.typography}>
               <Typography className={classes.keyTypography}>País:</Typography>

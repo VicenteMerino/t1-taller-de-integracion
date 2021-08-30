@@ -6,21 +6,25 @@ import { ListItemText, Typography, List, ListItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginLeft: "20vw",
-    marginTop: "20vh",
+    marginLeft: "10vw",
+    marginTop: "10vh",
     display: "flex",
+  },
+  city: {
+    marginRight: "10vw"
   },
   image: {
     borderRadius: "8px",
     width: "400px"
   },
-  character: {
-    border: "solid red 3px",
-  },
   dataInformation: {
     display: "flex",
     flexDirection: "column",
-    marginLeft: "40px"
+    marginLeft: "40px",
+    borderRadius: "12px",
+    border: "3px black solid",
+    height: "60vh",
+    padding: "30px"
   },
   dataCard: {
     display: "flex",
@@ -40,8 +44,12 @@ const useStyles = makeStyles((theme) => ({
   },
   keyTypography: {
     fontWeight: "bold",
-    marginRight: "5px"
+    marginRight: "5px",
+    fontSize: "30px"
   },
+  valueTypography: {
+    fontSize: "30px"
+  }
 }));
 const City = () => {
   const classes = useStyles();
@@ -68,32 +76,34 @@ const City = () => {
   console.log(users);
   return (
     <div className={classes.root}>
-      <div className={classes.character}>
+      <div className={classes.city}>
         <div className={classes.dataContainer}>
           <div>
             <div className={classes.typography}>
               <Typography className={classes.keyTypography}>Ciudad:</Typography>
-              <Typography>{`${city.name}`}</Typography>
+              <Typography className={classes.valueTypography}>{`${city.name}`}</Typography>
             </div>
             <div className={classes.typography}>
               <Typography className={classes.keyTypography}>País:</Typography>
-              <Typography>{`${city.country}`}</Typography>
+              <Typography className={classes.valueTypography}>{`${city.country}`}</Typography>
             </div>
           </div>
         </div>
       </div>
       <div className={classes.dataInformation}>
         <Typography variant="h5" color="primary">Usuarios con dirección registrada</Typography>
+        <List>
         {users.map((user, index) => {
           return (
-            <div key={index} className={classes.dataCard}>
-              <div className={classes.typography}>
-                <Typography className={classes.keyTypography}>Nombre y Apellido:</Typography>
-                <Typography>{`${user.name} ${user.lastName}`}</Typography>
-              </div>
-            </div>
+            <ListItem button component="a" href={`/users/${user.id}`}
+                      key={index} className={classes.userItem}>
+              <span>
+                {`${user.name} ${user.lastName}`}
+              </span>
+            </ListItem>
           )
         })}
+        </List>
       </div>
     </div>
   );
