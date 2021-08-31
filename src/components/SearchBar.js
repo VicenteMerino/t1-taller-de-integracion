@@ -4,6 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { getAllUsers, getAllCities } from '../utils/fetch';
 import { AppBar, TextField, } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import PersonIcon from '@material-ui/icons/Person';
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
@@ -15,31 +22,23 @@ const useStyles = makeStyles((theme) => ({
   search: {
     width: "20vw",
     backgroundColor: "white",
-  }
+    marginRight: "20px"
+  },
+  submit: {
+    color: "red"
+  },
 }))
 
 const SearchBar = () => {
   const classes = useStyles();
   const [users, setUsers] = useState([]);
+  const [type, setType] = useState("");
+  const [query, setQuery] = useState("");
   const [cities, setCities] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const [filteredCities, setFilteredCities]
+  const [filteredCities, setFilteredCities] = useState([]);
 
-  const handleFilter = (event) => {
-    const searchWord = event.target.value;
-    const newFilter = users.filter((value) => {
-      const userName = `${value.name} ${value.lastName}`.toLowerCase();
-      console.log(userName.includes(searchWord.toLowerCase()));
-      return userName.includes(searchWord.toLowerCase());
-    });
-    if (searchWord !== "") {
-      setFilteredUsers(newFilter);
-    } else {
-      setFilteredUsers([])
-    }
-  }
-
-  console.log(filteredUsers)
+  console.log(query)
 
   useEffect(() => {
     getAllUsers().then((usersJson) => {
@@ -48,32 +47,30 @@ const SearchBar = () => {
   }, []);
   return (
     <AppBar className={classes.navbar}>
-        <Autocomplete options={users} 
-                      getOptionLabel={(option) =>`${option.name} ${option.lastName}`}
-                      renderInput={(params) => {
-                      return (<TextField {...params} label="Usuarios" variant="outlined" />)
-                    }}
-                      onChange={(event, value) => {
-                        console.log(value)
-                      }}
-                      className={classes.search}/>
-        {/* <div className={classes.searchInput}>
-          <input type="text" 
-                onChange={handleFilter}
-                className={classes.input} />
-          <div className={classes.searchIcon}></div>
-        </div> */}
-        {/* {filteredUsers.length > 0 && (
-          <div className={classes.dataResult}>
-            {filteredUsers.map((value, key) => {
-              return (
-                <a key={key} className={classes.dataItem} href={`/users/${value.id}`}>
-                  <p >{`${value.name} ${value.lastName}`}</p>
-                </a>
-              );
-            })} */}
-        {/* </div>
-        )} */}
+    <Paper className={classes.root} >
+
+      <IconButton className={classes.iconButton}  
+                  aria-label="menu" onClick={() => setType("cities")}
+                  style={type === "cities" ? {backgroundColor: "#f7dfaf"} : {backgroundColor: "white"}} >
+        <LocationCityIcon />
+      </IconButton>
+      <IconButton className={classes.iconButton}
+                  aria-label="menu" onClick={() => setType("users")}
+                  style={type === "users" ? {backgroundColor: "#f7dfaf"} : {backgroundColor: "white"}} >
+        <PersonIcon />
+      </IconButton>
+      <InputBase
+        className={classes.input}
+        placeholder="Persona o ciudad"
+        inputProps={{ 'aria-label': 'search google maps' }}
+        onChange={(e) => setQuery(e.currentTarget.value)}
+      />
+        <a href={query ? `${window.location.origin}/${type}?query=${query}`: "#"}>
+          <IconButton type="submit" className={classes.iconButton} aria-label="search">
+            <SearchIcon />
+          </IconButton>
+        </a>
+      </Paper>
     </AppBar>
   );
 }
