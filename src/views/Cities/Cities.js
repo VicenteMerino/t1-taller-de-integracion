@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { getAllCities } from '../../utils/fetch';
 import { useQuery } from '../../utils/query'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     marginLeft: "30vw",
     marginTop: "30vh",   

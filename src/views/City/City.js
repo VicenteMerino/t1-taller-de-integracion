@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { getCity, getUsersSet } from '../../utils/fetch';
-import { ListItemText, Typography, List, ListItem } from '@material-ui/core';
+import { Typography, List, ListItem } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     marginLeft: "10vw",
     marginTop: "15vh",
@@ -59,7 +59,7 @@ const City = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getCity(cityId).then(({response, res}) => {
+    getCity(cityId).then(({res}) => {
       setCity(res);
     });
   }, [cityId]);

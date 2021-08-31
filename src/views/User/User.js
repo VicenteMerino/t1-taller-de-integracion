@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { getUser, getUserCreditCards, getUserAddresses } from '../../utils/fetch';
 import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     marginLeft: "10vw",
     marginTop: "15vh",
@@ -68,13 +68,13 @@ const User = () => {
   const [addresses, setAddresses] = useState([])
 
   useEffect(() => {
-    getUser(userId).then(({response, res}) => {
+    getUser(userId).then(({res}) => {
       setUser(res);
     });
-    getUserAddresses(userId).then(({response, res}) => {
+    getUserAddresses(userId).then(({res}) => {
       setAddresses(res);
     });
-    getUserCreditCards(userId).then(({response, res}) => {
+    getUserCreditCards(userId).then(({res}) => {
       setCreditCards(res);
     });
   }, [userId]);

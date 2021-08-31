@@ -5,7 +5,7 @@ export async function getAllUsers(param) {
   let page = 1;
   let allPaginated = false;
   while (!allPaginated) {
-    const { response, res } = await getUsers(page, param);
+    const { res } = await getUsers(page, param);
     if (res.length) {
       users = users.concat(res);
     } else {
