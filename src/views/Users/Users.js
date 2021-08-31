@@ -19,8 +19,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center"
   },
-  userText: {
-  }
 }));
 const Users = () => {
   const classes = useStyles();
@@ -36,6 +34,7 @@ const Users = () => {
 
   return (
     <div className={classes.root}>
+      <h3>Usuarios</h3>
       <List className={classes.usersContainer}>
       {users.map((user, index) => {
         return (

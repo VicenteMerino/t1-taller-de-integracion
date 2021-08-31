@@ -36,6 +36,7 @@ const Cities = () => {
 
   return (
     <div className={classes.root}>
+      <h3>Ciudades</h3>
       <List className={classes.usersContainer}>
       {cities.map((city, index) => {
         return (

@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: "10vw",
-    marginTop: "10vh",
+    marginTop: "15vh",
     display: "flex",
   },
   image: {

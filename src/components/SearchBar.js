@@ -1,16 +1,13 @@
-import { classes } from 'istanbul-lib-coverage';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { getAllUsers, getAllCities } from '../utils/fetch';
-import { AppBar, TextField, } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import { AppBar } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import PersonIcon from '@material-ui/icons/Person';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
@@ -18,35 +15,35 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "20px",
     textAlign: "center",
     alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
   },
   search: {
-    width: "20vw",
+    width: "30vw",
     backgroundColor: "white",
-    marginRight: "20px"
+    marginRight: "20px",
+    marginLeft: "30%"
   },
-  submit: {
-    color: "red"
-  },
+  home: {
+    marginLeft: "5%",
+    backgroundColor: "white",
+    padding: "5px",
+    borderRadius: "6px",
+  }
+
 }))
 
 const SearchBar = () => {
   const classes = useStyles();
-  const [users, setUsers] = useState([]);
   const [type, setType] = useState("");
   const [query, setQuery] = useState("");
-  const [cities, setCities] = useState([]);
-  const [filteredUsers, setFilteredUsers] = useState([]);
-  const [filteredCities, setFilteredCities] = useState([]);
 
-
-  useEffect(() => {
-    getAllUsers().then((usersJson) => {
-      setUsers(usersJson);
-    })
-  }, []);
   return (
     <AppBar className={classes.navbar}>
-    <Paper className={classes.root} >
+    <a href="/" className={classes.home}>
+      <HomeIcon />
+    </a>
+    <Paper className={classes.search} >
 
       <IconButton className={classes.iconButton}  
                   aria-label="menu" onClick={() => setType("cities")}
@@ -59,9 +56,7 @@ const SearchBar = () => {
         <PersonIcon />
       </IconButton>
       <InputBase
-        className={classes.input}
         placeholder="Usuario o ciudad"
-        inputProps={{ 'aria-label': 'search google maps' }}
         onChange={(e) => setQuery(e.currentTarget.value)}
       />
         <a href={query ? `${window.location.origin}/${type}?query=${query}`: "#"}>
