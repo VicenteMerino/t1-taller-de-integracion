@@ -1,1 +1,1 @@
-export { default } from 'useQuery';
+export { useQuery } from './useQuery';

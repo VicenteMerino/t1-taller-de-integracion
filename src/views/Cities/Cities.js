@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { getAllCities } from '../../utils/fetch';
+import { useQuery } from '../../utils/query'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,13 +24,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Cities = () => {
   const classes = useStyles();
-
+  const query = useQuery();
+  const param = query.get("query") ? query.get("query").split(" ").join("+") : "";
   const [cities, setCities] = useState([]);
   useEffect(() => {
-    getAllCities().then((citiesJson) => {
+    getAllCities(param).then((citiesJson) => {
+      console.log(citiesJson)
       setCities(citiesJson);
     })
-  }, []);
+  }, [param]);
 
   return (
     <div className={classes.root}>

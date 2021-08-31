@@ -38,7 +38,6 @@ const SearchBar = () => {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
 
-  console.log(query)
 
   useEffect(() => {
     getAllUsers().then((usersJson) => {
@@ -61,7 +60,7 @@ const SearchBar = () => {
       </IconButton>
       <InputBase
         className={classes.input}
-        placeholder="Persona o ciudad"
+        placeholder="Usuario o ciudad"
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={(e) => setQuery(e.currentTarget.value)}
       />
