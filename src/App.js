@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
 import Users from './views/Users';
