@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 const Users = () => {
   const classes = useStyles();
   const query = useQuery();
-  const param = query.get("query") ? query.get("query").split(" ").join("+") : "";
+  const param = query.get("query") ? query.get("query") : "";
   console.log(param)
   const [users, setUsers] = useState([]);
   useEffect(() => {

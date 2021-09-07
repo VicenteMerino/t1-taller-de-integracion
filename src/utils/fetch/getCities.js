@@ -3,7 +3,7 @@ import { URL } from '../url';
 export async function getCities(page, param) {
   let fetchUrl;
   if (param) {
-    fetchUrl = `${URL}/cities?_page=${page}&name=${param}`;
+    fetchUrl = `${URL}/cities?_page=${page}&q=${param}`;
   } else {
     fetchUrl = `${URL}/cities?_page=${page}`
   }

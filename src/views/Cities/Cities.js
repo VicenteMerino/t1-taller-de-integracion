@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 const Cities = () => {
   const classes = useStyles();
   const query = useQuery();
-  const param = query.get("query") ? query.get("query").split(" ").join("+") : "";
+  const param = query.get("query") ? query.get("query") : "";
   const [cities, setCities] = useState([]);
   useEffect(() => {
     getAllCities(param).then((citiesJson) => {
